@@ -94,7 +94,6 @@ public class Date {
         return year + "-" +  month + "-" + day;
     }
 
-
     /**
      * uses an algorithm given and finds the day of the week
      * @param year
@@ -186,7 +185,6 @@ public class Date {
         return (year % YEAR_DIVISOR_FOUR == 0 && year % YEAR_DIVISOR_ONE_HUNDRED != 0)
                 || (year % YEAR_DIVISOR_FOUR_HUNDRED == 0);
     }
-
 
     /**
      * This returns the number of days in a month based on the month and checks if
