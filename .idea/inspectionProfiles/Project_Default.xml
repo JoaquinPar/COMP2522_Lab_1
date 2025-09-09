@@ -1,6 +1,12 @@
 <component name="InspectionProjectProfileManager">
   <profile version="1.0">
     <option name="myName" value="Project Default" />
+<<<<<<< Updated upstream
     <inspection_tool class="MagicNumber" enabled="true" level="WARNING" enabled_by_default="true" />
+=======
+    <inspection_tool class="MagicNumber" enabled="true" level="WARNING" enabled_by_default="true" editorAttributes="WARNING_ATTRIBUTES">
+      <option name="ignoreInAnnotations" value="false" />
+    </inspection_tool>
+>>>>>>> Stashed changes
   </profile>
 </component>

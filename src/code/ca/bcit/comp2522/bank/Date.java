@@ -4,6 +4,20 @@ public class Date {
     private final int year;
     private final int month;
     private final int day;
+    private static final int DAY_ONE = 1;
+    private static final int REMAINDER_OF_ZERO = 0;
+    private static final int STARTING_OFFSET_ZERO = 0;
+    private static final int STARTING_MONTH_NUMBER = 0;
+    private static final int LAST_TWO_DIGITS_OF_THOUSANDTHS = 100;
+    private static final int DIVISION_BY_SEVEN = 7;
+    private static final int DIVISION_BY_TWELVE = 12;
+    private static final int DIVISION_BY_FOUR = 4;
+    private static final int MULTIPLICATION_BY_TWELVE = 12;
+    private static final int YEAR_NINTEEN_HUNDREDS = 1900;
+    private static final int YEAR_NINTEEN_NINETYNINE = 1999;
+    private static final int OFFSET_INCREASE_SIX = 6;
+    private static final int OFFSET_TWO = 2;
+    private static final int MONTH_FIRST_SECOND = 2;
     private static final int YEAR_DIVISOR_FOUR_HUNDRED = 400;
     private static final int YEAR_DIVISOR_FOUR = 4;
     private static final int YEAR_DIVISOR_ONE_HUNDRED = 100;
@@ -14,6 +28,13 @@ public class Date {
     private static final int MONTH_DIVIDED_BY_TWO = 2;
     private static final int LOWEST_YEAR_ALLOWED = 1800;
     private static final int CURRENT_YEAR = 2025;
+    private static final int DAY_OF_WEEK_SATURDAY = 0;
+    private static final int DAY_OF_WEEK_SUNDAY = 1;
+    private static final int DAY_OF_WEEK_MONDAY = 2;
+    private static final int DAY_OF_WEEK_TUESDAY = 3;
+    private static final int DAY_OF_WEEK_WEDNESDAY = 4;
+    private static final int DAY_OF_WEEK_THURSDAY = 5;
+    private static final int DAY_OF_WEEK_FRIDAY = 6;
     private static final int MONTH_CODE_JAN = 1;
     private static final int MONTH_CODE_FEB = 4;
     private static final int MONTH_CODE_MAR = 4;
@@ -65,7 +86,7 @@ public class Date {
         this.year = year;
         this.month = month;
 
-        Validation.validateNumber(day, 1, numberOfDaysInMonth(month, year));
+        Validation.validateNumber(day, DAY_ONE, numberOfDaysInMonth(month, year));
 
         this.day = day;
     }
@@ -90,8 +111,8 @@ public class Date {
      * @param day
      * @return the year month day formatted yyyymmdd
      */
-    public static String getYyyyMmDd(final int year, final int month, final int day) {
-        return year + "-" +  month + "-" + day;
+    public String getYyyyMmDd() {
+        return this.year + "-" +  this.month + "-" + this.day;
     }
 
     /**
@@ -102,18 +123,17 @@ public class Date {
      * @return returns the day of the week accurate for 1800 - 2000s
      */
     public static String getDayOfWeek(final int year, final int month, final int day) {
-        int offset = 0;
-        if (year < 1900) {
-            offset += 2;
-        } else if (year > 1999) {
-            offset += 6;
+        int offset = STARTING_OFFSET_ZERO;
+        if (year < YEAR_NINTEEN_HUNDREDS) {
+            offset += OFFSET_TWO;
+        } else if (year > YEAR_NINTEEN_NINETYNINE) {
+            offset += OFFSET_INCREASE_SIX;
         }
-
-        if (isLeapYear(year)) {
-            offset += 6;
+        if (isLeapYear(year) && month <= MONTH_FIRST_SECOND) {
+            offset += OFFSET_INCREASE_SIX;
         }
         //This takes month code based on algorithm to be able to determine day of the week/l
-        int month_code = 0;
+        int month_code = STARTING_MONTH_NUMBER;
         if (month == MONTH_JAN) {
            month_code = MONTH_CODE_JAN;
         } else if (month == MONTH_FEB) {
@@ -142,34 +162,34 @@ public class Date {
             throw new IllegalArgumentException("this is not a valid month " + month);
         }
 
-        final int year_remainder = year % 100;
-        final int twelves_in_year = year_remainder / 12;
-        final int year_digits_minus_twelves_in_year = year_remainder - twelves_in_year * 12;
-        final int fours_in_digits_minus_twelve = year_digits_minus_twelves_in_year/ 4;
+        final int year_remainder = year % LAST_TWO_DIGITS_OF_THOUSANDTHS;
+        final int twelves_in_year = year_remainder / DIVISION_BY_TWELVE;
+        final int year_digits_minus_twelves_in_year = year_remainder - twelves_in_year * MULTIPLICATION_BY_TWELVE;
+        final int fours_in_digits_minus_twelve = year_digits_minus_twelves_in_year/ DIVISION_BY_FOUR;
         final int day_of_month_add = day + twelves_in_year +
                 year_digits_minus_twelves_in_year + fours_in_digits_minus_twelve;
         final int month_code_calc = day_of_month_add + month_code + offset;
-        final int day_of_week = month_code_calc % 7;
+        final int day_of_week = month_code_calc % DIVISION_BY_SEVEN;
 
-        if (day_of_week == 0) {
+        if (day_of_week == DAY_OF_WEEK_SUNDAY) {
             return "SUNDAY";
         }
-        if (day_of_week == 1) {
+        if (day_of_week == DAY_OF_WEEK_SATURDAY) {
             return "SATURDAY";
         }
-        if (day_of_week == 2) {
+        if (day_of_week == DAY_OF_WEEK_MONDAY) {
             return "MONDAY";
         }
-        if (day_of_week == 3) {
+        if (day_of_week == DAY_OF_WEEK_TUESDAY) {
             return "TUESDAY";
         }
-        if (day_of_week == 4) {
+        if (day_of_week == DAY_OF_WEEK_WEDNESDAY) {
             return "WEDNESDAY";
         }
-        if (day_of_week == 5) {
+        if (day_of_week == DAY_OF_WEEK_THURSDAY) {
             return "THURSDAY";
         }
-        if (day_of_week == 6) {
+        if (day_of_week == DAY_OF_WEEK_FRIDAY) {
             return "FRIDAY";
         }
         throw new IllegalArgumentException("Nothing worked");
@@ -182,8 +202,8 @@ public class Date {
      * @return true if leap year false if not
      */
     private static boolean isLeapYear(final int year) {
-        return (year % YEAR_DIVISOR_FOUR == 0 && year % YEAR_DIVISOR_ONE_HUNDRED != 0)
-                || (year % YEAR_DIVISOR_FOUR_HUNDRED == 0);
+        return (year % YEAR_DIVISOR_FOUR == REMAINDER_OF_ZERO && year % YEAR_DIVISOR_ONE_HUNDRED != REMAINDER_OF_ZERO)
+                || (year % YEAR_DIVISOR_FOUR_HUNDRED == REMAINDER_OF_ZERO);
     }
 
     /**
@@ -194,9 +214,9 @@ public class Date {
      * @return days in a month given
      */
     private static int numberOfDaysInMonth(final int month, final int year) {
-        if (month % MONTH_DIVIDED_BY_TWO != 0 && month < MONTH_JUL) {
+        if (month % MONTH_DIVIDED_BY_TWO != REMAINDER_OF_ZERO && month < MONTH_JUL) {
            return HIGHEST_MONTH_DAYS;
-        } else if ((month % MONTH_DIVIDED_BY_TWO == 0) && (month > MONTH_JUN && month <= MONTH_DEC)) {
+        } else if ((month % MONTH_DIVIDED_BY_TWO == REMAINDER_OF_ZERO) && (month > MONTH_JUN && month <= MONTH_DEC)) {
             return HIGHEST_MONTH_DAYS;
         } else if (month == MONTH_FEB) {
             if (isLeapYear(year)) {
@@ -204,8 +224,8 @@ public class Date {
             } else {
                 return LOWEST_NUMBER_OF_DAYS_IN_MONTH;
             }
-        } else if ((month % MONTH_DIVIDED_BY_TWO == 0 && (month <= MONTH_JUL && month > MONTH_FEB)
-                || (month > MONTH_JUN && month % MONTH_DIVIDED_BY_TWO != 0))) {
+        } else if ((month % MONTH_DIVIDED_BY_TWO == REMAINDER_OF_ZERO && (month <= MONTH_JUL && month > MONTH_FEB)
+                || (month > MONTH_JUN && month % MONTH_DIVIDED_BY_TWO != REMAINDER_OF_ZERO))) {
             return MONTH_WITH_THIRTY_DAYS;
         } else {
             throw new IllegalArgumentException("That is not a valid month");
@@ -217,7 +237,7 @@ public class Date {
         Date d = new Date(1800, 12, 1);
 //        System.out.println(numberOfDaysInMonth(8, 2000));
         System.out.println(d.getMonth());
-        System.out.println(getDayOfWeek(1977, 10, 31));
+        System.out.println(getDayOfWeek(2004, 01, 10));
     }
 }
 
