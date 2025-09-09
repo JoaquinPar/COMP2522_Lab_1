@@ -1,15 +1,25 @@
 package ca.bcit.comp2522.bank;
 
 public class Date {
-    private final int YEAR;
-    private final int MONTH;
-    private final int DAY;
-    private static final int YEAR_DIVISOR_FOURHUNDRED = 400;
+    private static final int YEAR;
+    private static final int MONTH;
+    private static final int DAY;
+    private static final int YEAR_DIVISOR_FOUR_HUNDRED = 400;
     private static final int YEAR_DIVISOR_FOUR = 4;
-    private static final int YEAR_DIVISOR_ONEHUNDRED = 100;
+    private static final int YEAR_DIVISOR_ONE_HUNDRED = 100;
     private static final int HIGHEST_MONTH_DAYS = 31;
+    private static final int MONTH_WITH_THIRTY_DAYS = 30;
     private static final int LOWEST_NUMBER_OF_DAYS_IN_MONTH = 28;
-    private final int leapYearMonth = 29;
+    private static final int LEAP_YEAR_MONTH = 29;
+    private static final int MONTH_JUNE = 6;
+    private static final int MONTH_AUGUST = 8;
+    private static final int MONTH_FEB = 2;
+    private static final int MONTH_JULY = 7;
+    private static final int MONTH_DECEMBER = 12;
+    private static final int MONTH_DIVIDED_BY_TWO = 2;
+    private static final int MONTH_CODE_JAN = 1;
+    private static final int LOWEST_YEAR_ALLOWED = 1800;
+    private static int CURRENT_YEAR = 2025;
 //    private final int
 
     /* We need to add a leap year func
@@ -31,7 +41,7 @@ public class Date {
      * @param day only allows days  1-31, 1-28, 1-29, 1-30
      */
     public Date(int year, int month, int day) {
-        Validation.validateNumber(year, 1800, 2025);
+        Validation.validateNumber(year, LOWEST_YEAR_ALLOWED, CURRENT_YEAR);
         Validation.validateNumber(month, 1, 12);
 
         this.YEAR = year;
@@ -42,6 +52,18 @@ public class Date {
         this.DAY = day;
     }
 
+
+    public static String getDay(int day) {
+        return 
+    }
+
+    /**
+     * This function takes in yyyymmdd and formats it
+     * @param year
+     * @param month
+     * @param day
+     * @return the year month day formatted yyyymmdd
+     */
     public static String getYyyyMmDd(int year, int month, int day) {
         return year + "-" +  month + "-" + day;
     }
@@ -53,8 +75,8 @@ public class Date {
      * @return true if leap year false if not
      */
     private static boolean isLeapYear(int year) {
-        return (year % YEAR_DIVISOR_FOUR == 0 && year % YEAR_DIVISOR_FOURHUNDRED == 0)
-                || (year % YEAR_DIVISOR_FOUR == 0 && year % YEAR_DIVISOR_ONEHUNDRED != 0);
+        return (year % YEAR_DIVISOR_FOUR == 0 && year % YEAR_DIVISOR_FOUR_HUNDRED == 0)
+                || (year % YEAR_DIVISOR_FOUR == 0 && year % YEAR_DIVISOR_ONE_HUNDRED != 0);
     }
 
 
@@ -66,23 +88,27 @@ public class Date {
      * @return days in a month given
      */
     private static int numberOfDaysInMonth(int month, int year) {
-        if (month % 2 != 0 && month < 7) {
-           return 31;
-        } else if ((month % 2 == 0) && (month > 6 && month < 12)) {
-            return 31;
-        } else if (month == 2) {
+        if (month % MONTH_DIVIDED_BY_TWO != 0 && month < MONTH_JULY) {
+           return HIGHEST_DAYS_IN_MONTH;
+        } else if ((month % MONTH_DIVIDED_BY_TWO == 0) && (month > MONTH_JUNE && month < MONTH_DECEMBER)) {
+            return HIGHEST_DAYS_IN_MONTH;
+        } else if (month == MONTH_FEB) {
             if (isLeapYear(year)) {
-                return 29;
+                return LEAP_YEAR_MONTH;
             } else {
-                return 28;
+                return LOWEST_NUMBER_OF_DAYS_IN_MONTH;
             }
-        } else if (month % 2 == 0 && (month < 7 && month > 2)) {
-            return 30;
+        } else if ((month % MONTH_DIVIDED_BY_TWO == 0 && (month < MONTH_JULY && month > MONTH_FEB)
+                || (month > MONTH_JUNE && month % MONTH_DIVIDED_BY_TWO != 0)) {
+            return MONTH_WITH_THIRTY_DAYS;
         } else {
-            System.out.println("There is an error");
+            Throw new IllegalArgumentException("Somehow you bypassed all the month checks");
             return 0;
         }
     }
+
+
+
 
     public static void main(String[] args) {
         Date d = new Date(1800, 13, 1);
