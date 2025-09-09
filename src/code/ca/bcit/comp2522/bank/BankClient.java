@@ -7,7 +7,7 @@ public class BankClient {
     private final Date signupDate;
     private final String clientID;
 
-    public BankClient(Name clientName, Date birthDate) {
+    public BankClient(final Name clientName, final Date birthDate) {
         this(clientName, birthDate, null, null, null);
     }
 
@@ -30,7 +30,7 @@ public class BankClient {
 
         if (clientID == null) {
             stringToReturn = stringToReturn + getClientDetails() + "\n";
-            if (deathDate == null) {
+            if (!isAlive()) {
                 stringToReturn = stringToReturn + clientName.getFullName() + " (Alive) was born on "
                         + birthDate.toString() + "!";
             } else {
@@ -38,7 +38,7 @@ public class BankClient {
                         + deathDate.toString() + ") was born on" + birthDate.toString() + "!";
             }
         } else {
-            if (deathDate == null) {
+            if (isAlive()) {
                 stringToReturn = stringToReturn + clientName.getFullName() + " client "
                         + clientID + " (Alive) joined the bank on " + signupDate.toString();
             } else {
@@ -50,9 +50,12 @@ public class BankClient {
         return stringToReturn;
     }
 
+    public boolean isAlive() {
+        return deathDate != null;
+    }
+
     public String getClientDetails() {
         return clientName.getInitials() + ", " + clientName.getFullName() + ", "
                 + clientName.getReverseName();
     }
-
 }
