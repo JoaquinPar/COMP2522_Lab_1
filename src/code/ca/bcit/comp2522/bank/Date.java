@@ -11,13 +11,7 @@ public class Date {
     private static final int MONTH_WITH_THIRTY_DAYS = 30;
     private static final int LOWEST_NUMBER_OF_DAYS_IN_MONTH = 28;
     private static final int LEAP_YEAR_MONTH = 29;
-    private static final int MONTH_JUNE = 6;
-    private static final int MONTH_AUGUST = 8;
-    private static final int MONTH_FEB = 2;
-    private static final int MONTH_JULY = 7;
-    private static final int MONTH_DECEMBER = 12;
     private static final int MONTH_DIVIDED_BY_TWO = 2;
-    private static final int MONTH_JAN = 1;
     private static final int LOWEST_YEAR_ALLOWED = 1800;
     private static final int CURRENT_YEAR = 2025;
     private static final int MONTH_CODE_JAN = 1;
@@ -32,6 +26,18 @@ public class Date {
     private static final int MONTH_CODE_OCT = 1;
     private static final int MONTH_CODE_NOV = 4;
     private static final int MONTH_CODE_DEC = 6;
+    private static final int MONTH_JAN = 1;
+    private static final int MONTH_FEB = 2;
+    private static final int MONTH_MAR = 3;
+    private static final int MONTH_APR = 4;
+    private static final int MONTH_MAY = 5;
+    private static final int MONTH_JUN = 6;
+    private static final int MONTH_JUL = 7;
+    private static final int MONTH_AUG = 8;
+    private static final int MONTH_SEP = 9;
+    private static final int MONTH_OCT = 10;
+    private static final int MONTH_NOV = 11;
+    private static final int MONTH_DEC = 12;
 
 
     /* We need to add a leap year func
@@ -54,7 +60,7 @@ public class Date {
      */
     public Date(int year, int month, int day) {
         Validation.validateNumber(year, LOWEST_YEAR_ALLOWED, CURRENT_YEAR);
-        Validation.validateNumber(month, MONTH_JAN, MONTH_DECEMBER);
+        Validation.validateNumber(month, MONTH_JAN, MONTH_DEC);
 
         this.year = year;
         this.month = month;
@@ -97,7 +103,7 @@ public class Date {
      * @return returns the day of the week accurate for 1800 - 2000s
      */
     public static String getDayOfWeek(final int year, final int month, final int day) {
-        int offset;
+        int offset = 0;
         if (year < 1900) {
             offset += 2;
         } else if (year > 1999) {
@@ -107,58 +113,67 @@ public class Date {
         if (isLeapYear(year)) {
             offset += 6;
         }
-
-        final int month_code;
-        if (month == 1) {
+        //This takes month code based on algorithm to be able to determine day of the week/l
+        int month_code = 0;
+        if (month == MONTH_JAN) {
            month_code = MONTH_CODE_JAN;
-        } else if (month == 2) {
+        } else if (month == MONTH_FEB) {
             month_code = MONTH_CODE_FEB;
-        } else if (month == 3) {
+        } else if (month == MONTH_MAR) {
             month_code = MONTH_CODE_MAR;
-        } else if (month == 4) {
+        } else if (month == MONTH_APR) {
             month_code = MONTH_CODE_APR;
-        } else if (month == 5) {
+        } else if (month == MONTH_MAY) {
             month_code = MONTH_CODE_MAY;
-        } else if (month == 6) {
+        } else if (month == MONTH_JUN) {
             month_code = MONTH_CODE_JUN;
-        } else if (month == 7) {
+        } else if (month == MONTH_JUL) {
             month_code = MONTH_CODE_JUL;
-        } else if (month == 8) {
+        } else if (month == MONTH_AUG) {
             month_code = MONTH_CODE_AUG;
-        } else if (month == 9) {
+        } else if (month == MONTH_SEP) {
             month_code = MONTH_CODE_SEP;
-        } else if (month == 10) {
+        } else if (month == MONTH_OCT) {
             month_code = MONTH_CODE_OCT;
-        } else if (month == 11) {
+        } else if (month == MONTH_NOV) {
             month_code = MONTH_CODE_NOV;
-        } else if (month == 12) {
+        } else if (month == MONTH_DEC) {
             month_code = MONTH_CODE_DEC;
+        } else {
+            throw new IllegalArgumentException("this is not a valid month " + month);
         }
 
         final int year_remainder = year % 100;
         final int twelves_in_year = year_remainder / 12;
-        final int year_digits_minus_twelves_in_year = yearRemainder - twelves_in_year * 12;
+        final int year_digits_minus_twelves_in_year = year_remainder - twelves_in_year * 12;
         final int fours_in_digits_minus_twelve = year_digits_minus_twelves_in_year/ 4;
         final int day_of_month_add = day + twelves_in_year +
-                years_digits_minus_twelves_in_year + fours_in_digits_minus_twelve;
-        final int month_code_calc = day_of_the_month_add + month_code + offset;
+                year_digits_minus_twelves_in_year + fours_in_digits_minus_twelve;
+        final int month_code_calc = day_of_month_add + month_code + offset;
         final int day_of_week = month_code_calc % 7;
 
         if (day_of_week == 0) {
             return "SUNDAY";
-        } else if (day_of_week == 1) {
+        }
+        if (day_of_week == 1) {
             return "SATURDAY";
-        } else if (day_of_week == 2) {
+        }
+        if (day_of_week == 2) {
             return "MONDAY";
-        } else if (day_of_week == 3) {
+        }
+        if (day_of_week == 3) {
             return "TUESDAY";
-        } else if (day_of_week == 4) {
+        }
+        if (day_of_week == 4) {
             return "WEDNESDAY";
-        } else if (day_of_week == 5) {
+        }
+        if (day_of_week == 5) {
             return "THURSDAY";
-        } else if (day_of_week == 6) {
+        }
+        if (day_of_week == 6) {
             return "FRIDAY";
         }
+        throw new IllegalArgumentException("Nothing worked");
     }
 
 
@@ -169,7 +184,7 @@ public class Date {
      */
     private static boolean isLeapYear(final int year) {
         return (year % YEAR_DIVISOR_FOUR == 0 && year % YEAR_DIVISOR_ONE_HUNDRED != 0)
-                || (YEAR_DIVISOR_FOUR_HUNDRED == 0);
+                || (year % YEAR_DIVISOR_FOUR_HUNDRED == 0);
     }
 
 
@@ -181,9 +196,9 @@ public class Date {
      * @return days in a month given
      */
     private static int numberOfDaysInMonth(final int month, final int year) {
-        if (month % MONTH_DIVIDED_BY_TWO != 0 && month < MONTH_JULY) {
+        if (month % MONTH_DIVIDED_BY_TWO != 0 && month < MONTH_JUL) {
            return HIGHEST_MONTH_DAYS;
-        } else if ((month % MONTH_DIVIDED_BY_TWO == 0) && (month > MONTH_JUNE && month <= MONTH_DECEMBER)) {
+        } else if ((month % MONTH_DIVIDED_BY_TWO == 0) && (month > MONTH_JUN && month <= MONTH_DEC)) {
             return HIGHEST_MONTH_DAYS;
         } else if (month == MONTH_FEB) {
             if (isLeapYear(year)) {
@@ -191,8 +206,8 @@ public class Date {
             } else {
                 return LOWEST_NUMBER_OF_DAYS_IN_MONTH;
             }
-        } else if ((month % MONTH_DIVIDED_BY_TWO == 0 && (month <= MONTH_JULY && month > MONTH_FEB)
-                || (month > MONTH_JUNE && month % MONTH_DIVIDED_BY_TWO != 0))) {
+        } else if ((month % MONTH_DIVIDED_BY_TWO == 0 && (month <= MONTH_JUL && month > MONTH_FEB)
+                || (month > MONTH_JUN && month % MONTH_DIVIDED_BY_TWO != 0))) {
             return MONTH_WITH_THIRTY_DAYS;
         } else {
             throw new IllegalArgumentException("That is not a valid month");
@@ -204,7 +219,7 @@ public class Date {
         Date d = new Date(1800, 12, 1);
 //        System.out.println(numberOfDaysInMonth(8, 2000));
         System.out.println(d.getMonth());
-        System.out.println(1977 % 100);
+        System.out.println(getDayOfWeek(1977, 10, 31));
     }
 }
 
