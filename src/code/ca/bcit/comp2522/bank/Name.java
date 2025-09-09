@@ -1,23 +1,24 @@
 package ca.bcit.comp2522.bank;
 
+/**
+ *
+ */
 public class Name {
     private static final int INDEX_OFFSET = 1;
     private static final int FIRST_CHARACTER_INDEX = 0;
     private static final int SECOND_CHARACTER_INDEX = 1;
     private static final int MAX_LENGTH_OF_NAMES = 45;
 
-
     private final String firstName;
     private final String lastName;
-
 
     /**
      * Need to make this validate if the names are longer than 45 characters,
      * it must also not contain admin in any letter casing, cannot be null
      * nor blank.
      *
-     * @param firstName
-     * @param lastName
+     * @param firstName the first name entered by the user
+     * @param lastName the last name entered by the user
      */
     public Name(String firstName, String lastName) {
         Validation.validateString(firstName, MAX_LENGTH_OF_NAMES);
@@ -83,13 +84,5 @@ public class Name {
         }
 
         return reversedLastName + " " + reversedFirstName;
-    }
-
-    public static void main(final String[] args) {
-        Name newName;
-        newName = new Name("John", "Doe");
-
-        System.out.println(newName.getReverseName());
-        System.out.println(newName.getInitials());
     }
 }

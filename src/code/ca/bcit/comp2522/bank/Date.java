@@ -21,11 +21,24 @@ public class Date {
      *
      * @param year only allow between 1800 to current year
      * @param month Only allows months 1-12
+    public static void main(final String[] args) {
+        Name newName;
+        newName = new Name("John", "Doe");
+
+        System.out.println(newName.getReverseName());
+        System.out.println(newName.getInitials());
+    }
      * @param day only allows days  1-31, 1-28, 1-29, 1-30
      */
     public Date(int year, int month, int day) {
+        Validation.validateNumber(year, 1800, 2025);
+        Validation.validateNumber(month, 1, 12);
+
         this.YEAR = year;
         this.MONTH = month;
+
+        Validation.validateNumber(day, 1, numberOfDaysInMonth(month, year));
+
         this.DAY = day;
     }
 
@@ -72,6 +85,8 @@ public class Date {
     }
 
     public static void main(String[] args) {
+        Date d = new Date(1800, 13, 1);
+
         System.out.println(numberOfDaysInMonth(8, 2000));
 
     }

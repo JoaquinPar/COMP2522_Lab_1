@@ -7,4 +7,10 @@ public class Validation {
             throw new IllegalArgumentException();
         }
     }
+
+    public static void validateNumber(final int numberToValidate, final int minNumber, final int maxNumber) {
+        if (numberToValidate < minNumber || numberToValidate > maxNumber) {
+            throw new IllegalArgumentException();
+        }
+    }
 }
