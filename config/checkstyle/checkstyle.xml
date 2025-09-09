@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<module name="Checker">
+    <module name="TreeWalker">
+        <module name="MagicNumber">
+            <!-- Only ignore 0; flag everything else -->
+            <property name="ignoreNumbers" value=""/>
+            <!-- Optional “where” filters; keep if you want the same behavior as IDEA -->
+            <property name="ignoreHashCodeMethod" value="true"/>
+            <property name="ignoreAnnotation" value="true"/>
+        </module>
+    </module>
+</module>
