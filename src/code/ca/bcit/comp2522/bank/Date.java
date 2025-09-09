@@ -13,8 +13,8 @@ public class Date {
     private static final int DIVISION_BY_TWELVE = 12;
     private static final int DIVISION_BY_FOUR = 4;
     private static final int MULTIPLICATION_BY_TWELVE = 12;
-    private static final int YEAR_NINTEEN_HUNDREDS = 1900;
-    private static final int YEAR_NINTEEN_NINETYNINE = 1999;
+    private static final int YEAR_NINETEEN_HUNDREDS = 1900;
+    private static final int YEAR_NINETEEN_NINETYNINE = 1999;
     private static final int OFFSET_INCREASE_SIX = 6;
     private static final int OFFSET_TWO = 2;
     private static final int MONTH_FIRST_SECOND = 2;
@@ -104,11 +104,9 @@ public class Date {
         return this.month;
     }
 
+
     /**
      * This function takes in yyyymmdd and formats it
-     * @param year
-     * @param month
-     * @param day
      * @return the year month day formatted yyyymmdd
      */
     public String getYyyyMmDd() {
@@ -117,16 +115,13 @@ public class Date {
 
     /**
      * uses an algorithm given and finds the day of the week
-     * @param year
-     * @param month
-     * @param day
      * @return returns the day of the week accurate for 1800 - 2000s
      */
-    public static String getDayOfWeek(final int year, final int month, final int day) {
+    public String getDayOfWeek() {
         int offset = STARTING_OFFSET_ZERO;
-        if (year < YEAR_NINTEEN_HUNDREDS) {
+        if (year < YEAR_NINETEEN_HUNDREDS) {
             offset += OFFSET_TWO;
-        } else if (year > YEAR_NINTEEN_NINETYNINE) {
+        } else if (year > YEAR_NINETEEN_NINETYNINE) {
             offset += OFFSET_INCREASE_SIX;
         }
         if (isLeapYear(year) && month <= MONTH_FIRST_SECOND) {
@@ -198,7 +193,7 @@ public class Date {
 
     /**
      * takes in a year and returns if it is a leap year or not
-     * @param year
+     * @param year takes in year
      * @return true if leap year false if not
      */
     private static boolean isLeapYear(final int year) {
@@ -237,7 +232,7 @@ public class Date {
         Date d = new Date(1800, 12, 1);
 //        System.out.println(numberOfDaysInMonth(8, 2000));
         System.out.println(d.getMonth());
-        System.out.println(getDayOfWeek(2004, 01, 10));
+        System.out.println(d.getDayOfWeek());
     }
 }
 
