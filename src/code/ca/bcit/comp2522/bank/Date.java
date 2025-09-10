@@ -167,25 +167,25 @@ public class Date {
         final int day_of_week = month_code_calc % DIVISION_BY_SEVEN;
 
         if (day_of_week == DAY_OF_WEEK_SUNDAY) {
-            return "SUNDAY";
+            return "Sunday";
         }
         if (day_of_week == DAY_OF_WEEK_SATURDAY) {
-            return "SATURDAY";
+            return "Saturday";
         }
         if (day_of_week == DAY_OF_WEEK_MONDAY) {
-            return "MONDAY";
+            return "Monday";
         }
         if (day_of_week == DAY_OF_WEEK_TUESDAY) {
-            return "TUESDAY";
+            return "Tuesday";
         }
         if (day_of_week == DAY_OF_WEEK_WEDNESDAY) {
-            return "WEDNESDAY";
+            return "Wednesday";
         }
         if (day_of_week == DAY_OF_WEEK_THURSDAY) {
-            return "THURSDAY";
+            return "Thursday";
         }
         if (day_of_week == DAY_OF_WEEK_FRIDAY) {
-            return "FRIDAY";
+            return "Friday";
         }
         throw new IllegalArgumentException("Nothing worked");
     }
@@ -227,6 +227,37 @@ public class Date {
         }
     }
 
+    private String getMonthName(final int month) {
+        if (month == MONTH_JAN) {
+            return "January";
+        } else if (month == MONTH_FEB) {
+            return "February";
+        } else if (month == MONTH_MAR) {
+            return "March";
+        } else if (month == MONTH_APR) {
+            return "April";
+        } else if (month == MONTH_MAY) {
+            return "May";
+        } else if (month == MONTH_JUN) {
+            return "June";
+        } else if (month == MONTH_JUL) {
+            return "July";
+        } else if (month == MONTH_AUG) {
+            return "August";
+        } else if (month == MONTH_SEP) {
+            return "September";
+        } else if (month == MONTH_OCT) {
+            return "October";
+        } else if (month == MONTH_NOV) {
+            return "November";
+        } else {
+            return "December";
+        }
+    }
+
+    public String toString() {
+        return getDayOfWeek() + ", " + getMonthName(month) + " " + day + ", " + year;
+    }
 
     public static void main(final String[] args) {
         Date d = new Date(1800, 12, 1);

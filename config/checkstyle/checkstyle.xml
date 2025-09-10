@@ -6,7 +6,7 @@
     <module name="TreeWalker">
         <module name="MagicNumber">
             <!-- Only ignore 0; flag everything else -->
-            <property name="ignoreNumbers" value=""/>
+            <property name="ignoreNumbers" value="0"/>
             <!-- Optional “where” filters; keep if you want the same behavior as IDEA -->
             <property name="ignoreHashCodeMethod" value="true"/>
             <property name="ignoreAnnotation" value="true"/>
