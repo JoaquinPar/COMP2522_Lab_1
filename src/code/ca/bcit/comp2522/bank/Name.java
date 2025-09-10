@@ -7,6 +7,7 @@ public class Name {
     private static final int INDEX_OFFSET = 1;
     private static final int FIRST_CHARACTER_INDEX = 0;
     private static final int SECOND_CHARACTER_INDEX = 1;
+    private static final int MIN_LENGTH_OF_NAMES = 1;
     private static final int MAX_LENGTH_OF_NAMES = 45;
 
     private final String firstName;
@@ -21,8 +22,8 @@ public class Name {
      * @param lastName the last name entered by the user
      */
     public Name(String firstName, String lastName) {
-        Validation.validateString(firstName, MAX_LENGTH_OF_NAMES);
-        Validation.validateString(lastName, MAX_LENGTH_OF_NAMES);
+        Validation.validateString(firstName, MIN_LENGTH_OF_NAMES, MAX_LENGTH_OF_NAMES);
+        Validation.validateString(lastName, MIN_LENGTH_OF_NAMES, MAX_LENGTH_OF_NAMES);
         this.firstName = firstName;
         this.lastName = lastName;
     }

@@ -8,6 +8,9 @@ public class BankClient {
     private final Date accountClosedDate;
     private final String clientID;
 
+    private static final int MIN_STRING_SIZE = 6;
+    private static final int MAX_STRING_SIZE = 7;
+
     public BankClient(final Name clientName, final Date birthDate) {
         this(clientName, birthDate, null, null, null, null);
     }
@@ -28,6 +31,9 @@ public class BankClient {
         this.deathDate = deathDate;
         this.signupDate = signupDate;
         this.accountClosedDate = accountClosedDate;
+
+        Validation.validateString(clientID, MIN_STRING_SIZE, MAX_STRING_SIZE);
+
         this.clientID = clientID;
     }
 
@@ -35,23 +41,18 @@ public class BankClient {
         String stringToReturn;
         stringToReturn = "";
 
-        if (clientID == null) {
-            stringToReturn = stringToReturn + getClientDetails() + "\n";
-            if (!isAlive()) {
-                stringToReturn = stringToReturn + clientName.getFullName() + " (Alive) was born on "
-                        + birthDate.toString() + "!";
-            } else {
-                stringToReturn = stringToReturn + clientName.getFullName() + " (Died "
-                        + deathDate.toString() + ") was born on " + birthDate.toString() + "!";
-            }
+        stringToReturn += getClientDetails();
+
+        if (!isAlive()) {
+            stringToReturn = stringToReturn + clientName.getFullName() + " client #"
+                    + clientID + " (Alive) joined the bank on " + signupDate.toString();
         } else {
-            if (isAlive()) {
-                stringToReturn = stringToReturn + clientName.getFullName() + " client #"
-                        + clientID + " (Alive) joined the bank on " + signupDate.toString();
-            } else {
-                stringToReturn = stringToReturn + clientName.getFullName() + " client #"
-                        + clientID + " (Deceased) joined the bank on " + signupDate.toString();
-            }
+            stringToReturn = stringToReturn + clientName.getFullName() + " client #"
+                    + clientID + " (Deceased) joined the bank on " + signupDate.toString();
+        }
+
+        if (accountClosedDate != null) {
+            stringToReturn = stringToReturn + " and closed their account on " + accountClosedDate.toString();
         }
 
         return stringToReturn;
@@ -62,8 +63,19 @@ public class BankClient {
     }
 
     public String getClientDetails() {
-        return clientName.getInitials() + ", " + clientName.getFullName() + ", "
-                + clientName.getReverseName();
+        String stringToReturn;
+        stringToReturn = "";
+
+        stringToReturn = stringToReturn + clientName.getInitials() + ", " + clientName.getFullName() + ", "
+                + clientName.getReverseName() + ". Born on " + birthDate.toString();
+
+        if (deathDate != null) {
+            stringToReturn = stringToReturn + ", died on " + deathDate.toString();
+        }
+
+        stringToReturn = stringToReturn + "\n";
+
+        return stringToReturn;
     }
 
     public static void main(final String[] args) {
@@ -80,9 +92,6 @@ public class BankClient {
         signup = new Date(1900, 1, 1);
         closed = new Date(1950, 10, 14);
         clientID = "abc123";
-
-        client1 = new BankClient(name, birth, death);
-        System.out.println(client1.getDetails());
         client1 = new BankClient(name, birth, death, signup, closed, clientID);
         System.out.println(client1.getDetails());
     }
