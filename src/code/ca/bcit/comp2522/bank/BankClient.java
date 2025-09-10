@@ -26,13 +26,13 @@ public class BankClient {
 
     public BankClient(final Name clientName, final Date birthDate, final Date deathDate,
                       final Date signupDate, final Date accountClosedDate, final String clientID) {
+        Validation.validateString(clientID, MIN_STRING_SIZE, MAX_STRING_SIZE);
+
         this.clientName = clientName;
         this.birthDate = birthDate;
         this.deathDate = deathDate;
         this.signupDate = signupDate;
         this.accountClosedDate = accountClosedDate;
-
-        Validation.validateString(clientID, MIN_STRING_SIZE, MAX_STRING_SIZE);
 
         this.clientID = clientID;
     }
