@@ -19,7 +19,7 @@ public class Validation {
     }
 
     /**
-     * This funcation checks the length of account number given to it
+     * This function checks the length of account number given to it
      * to make sure that it is a valid account number
      * @param accountToValidate This checks the account number given to it and makes
      *                          sure it is within the parameters given for it.

@@ -3,7 +3,6 @@ package ca.bcit.comp2522.bank;
 public class BankAccount {
     //The mythical bank account class I will be working on
     private final BankClient client;
-    private final Name name;
     private double balanceUsd;
     private final Date dateAccountOpened;
     private final Date dateAccountClosed;
@@ -15,11 +14,9 @@ public class BankAccount {
                        final double     balanceUsd,
                        int              pin,
                        final String     accountNumber,
-                       final Name       clientName,
                        final Date       dateAccountOpened) {
         this.client = client;
         this.balanceUsd = balanceUsd;
-        this.name = clientName;
         this.pin = pin;
         Validation.validateAccountNumber(accountNumber);
         this.accountNumber = accountNumber;
@@ -31,12 +28,10 @@ public class BankAccount {
                        final double     balanceUsd,
                        int              pin,
                        final String     accountNumber,
-                       final Name       clientName,
                        final Date       dateAccountOpened,
                        final Date       dateAccountClosed) {
         this.client = client;
         this.balanceUsd = balanceUsd;
-        this.name = clientName;
         this.pin = pin;
         Validation.validateAccountNumber(accountNumber);
         this.accountNumber = accountNumber;
@@ -46,7 +41,7 @@ public class BankAccount {
 
     /**
      * Amount user wants to deposit into account.
-     * @param amountToDepositUsd
+     * @param amountToDepositUsd amount we need to deposit
      */
     public void deposit(final double amountToDepositUsd) {
         balanceUsd += amountToDepositUsd;
@@ -82,16 +77,25 @@ public class BankAccount {
     }
 
     /**
+     * This checks if account is closed and if so returns false
+     * @return returns false if account is closed
+     */
+    private boolean checkIfAccountOpened() {
+        return (this.dateAccountClosed == null);
+    }
+
+    /**
      * This function checks if client is dead then returns their details
      * @return client name, balance, and when account was opened.
      */
     public String getDetails() {
-        if (client.isAlive()) {
-            return name.getFullName() + "had " + "$" + this.balanceUsd + " in account #: " + this.accountNumber
+        if (checkIfAccountOpened()) {
+            return client.getClientName().getFullName() + "had " + "$" + this.balanceUsd + " in account #: " + this.accountNumber
                     + " Which they opened on " + this.dateAccountOpened.getDayOfWeek() + " " + this.dateAccountOpened;
         } else {
-            return name.getFullName() + "had " + "$" + this.balanceUsd + " in account #: " + this.accountNumber
-                    + " Which they opened on " + this.dateAccountOpened + " "  + this.dateAccountOpened + " and closed on " + this.dateAccountClosed.getDayOfWeek() + " " + this.dateAccountClosed;
+            return client.getClientName().getFullName() + "had " + "$" + this.balanceUsd + " in account #: " + this.accountNumber
+                    + " Which they opened on " + this.dateAccountOpened + " "  + this.dateAccountOpened
+                    + " and closed on " + this.dateAccountClosed.getDayOfWeek() + " " + this.dateAccountClosed;
         }
     }
 }

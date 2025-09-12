@@ -53,6 +53,8 @@ public class Main {
         clientId = "abc123";
 
         client1 = new BankClient(name , birth, death, signup, clientId);
+
+
         System.out.println(client1.getClientDetails());
 
         birth = new Date(YEAR_OF_NINETEEN_EIGHTEEN, MONTH_OF_JULY, EIGHTEENTH_DAY);
@@ -73,14 +75,5 @@ public class Main {
 
         client3 = new BankClient(name, birth, death, signup, clientId);
         System.out.println(client3.getClientDetails());
-
-        birth = new Date(YEAR_OF_NINETEEN_FIFTY_FOUR, MONTH_OF_APRIL, SEVENTH_DAY);
-        signup = new Date(YEAR_OF_NINETEEN_EIGHTY, MONTH_OF_OCTOBER, FIRST_DAY);
-        name = new Name("Jacky", "Chan");
-        clientId = "chan789";
-
-        client4 = new BankClient(name, birth, signup, clientId);
-        System.out.println(client4.getClientDetails());
-
     }
 }
