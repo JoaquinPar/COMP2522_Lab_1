@@ -13,6 +13,14 @@ public class BankAccount {
     private final int pin;
     private final String accountNumber;
 
+    /**
+     * takes all information except date closed since it could still be open
+     * @param client client object with name
+     * @param balanceUsd balance user has usd
+     * @param pin User pin
+     * @param accountNumber user account number
+     * @param dateAccountOpened date user opened account
+     */
     public BankAccount(final BankClient client,
                        final double     balanceUsd,
                        int              pin,
@@ -21,6 +29,15 @@ public class BankAccount {
         this(client, balanceUsd, pin, accountNumber, dateAccountOpened, null);
     }
 
+    /**
+     * Creates an account based on information passed
+     * @param client client object with name and ID
+     * @param balanceUsd Balance user has in their account
+     * @param pin users pin
+     * @param accountNumber Account number for account
+     * @param dateAccountOpened date account was opened
+     * @param dateAccountClosed date customer closed account
+     */
     public BankAccount(final BankClient client,
                        final double     balanceUsd,
                        int              pin,

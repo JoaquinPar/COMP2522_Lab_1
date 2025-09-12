@@ -33,6 +33,16 @@ public class Main {
     private static final int SEVENTH_DAY = 7;
     private static final int YEAR_OF_NINETEEN_EIGHTY = 1980;
 
+    private static final int BALANCE_OF_ONE_THOUSAND = 1000;
+    private static final int PIN_OF_THREE_ONE_FOUR_ONE = 3141;
+
+    private static final int BALANCE_OF_TWO_THOUSAND = 2000;
+    private static final int PIN_OF_FOUR_SIX_SIX_FOUR = 4664;
+    private static final int BALANCE_OF_FIVE_HUNDRED = 500;
+    private static final int PIN_OF_NINETEEN_ZERO_SEVEN = 1907;
+    private static final int BALANCE_OF_THREE_THOUSAND = 3000;
+    private static final int PIN_OF_NINETEEN_FIFTY_FOUR = 1954;
+
     public static void main(final String[] args) {
         Date birth;
         Date death;
@@ -58,7 +68,8 @@ public class Main {
 
         client1 = new BankClient(name, birth, death, signup, clientId);
         System.out.println(client1.getDetails());
-        bankAccount1 = new BankAccount(client1, 1000, 3141, "123456", signup, accountClosed);
+        bankAccount1 = new BankAccount(client1, BALANCE_OF_ONE_THOUSAND, PIN_OF_THREE_ONE_FOUR_ONE,
+                "123456", signup, accountClosed);
         System.out.println(bankAccount1.getDetails());
 
 
@@ -70,7 +81,7 @@ public class Main {
 
         client2 = new BankClient(name, birth, death, signup, clientId);
         System.out.println(client2.getDetails());
-        bankAccount2 = new BankAccount(client2, 2000, 4664, "856492", signup);
+        bankAccount2 = new BankAccount(client2, BALANCE_OF_TWO_THOUSAND, PIN_OF_FOUR_SIX_SIX_FOUR, "856492", signup);
         System.out.println(bankAccount2.getDetails());
 
         birth = new Date(YEAR_OF_NINETEEN_O_SEVEN, MONTH_OF_JULY, SIXTH_DAY);
@@ -82,7 +93,8 @@ public class Main {
 
         client3 = new BankClient(name, birth, death, signup, clientId);
         System.out.println(client3.getDetails());
-        bankAccount3 = new BankAccount(client3, 500, 1907, "947392", signup, accountClosed);
+        bankAccount3 = new BankAccount(client3, BALANCE_OF_FIVE_HUNDRED,
+                PIN_OF_NINETEEN_ZERO_SEVEN, "947392", signup, accountClosed);
         System.out.println(bankAccount3.getDetails());
 
         birth = new Date(YEAR_OF_NINETEEN_FIFTY_FOUR, MONTH_OF_APRIL, SEVENTH_DAY);
@@ -92,7 +104,8 @@ public class Main {
 
         client4 = new BankClient(name, birth, signup, clientId);
         System.out.println(client4.getDetails());
-        bankAccount4 = new BankAccount(client4, 3000, 1954, "8503759", signup);
+        bankAccount4 = new BankAccount(client4, BALANCE_OF_THREE_THOUSAND, PIN_OF_NINETEEN_FIFTY_FOUR,
+                "8503759", signup);
         System.out.println(bankAccount4.getDetails());
     }
 }
