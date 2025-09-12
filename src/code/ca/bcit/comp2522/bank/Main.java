@@ -45,6 +45,10 @@ public class Main {
         BankClient client2;
         BankClient client3;
         BankClient client4;
+        BankAccount bankAccount1;
+        BankAccount bankAccount2;
+        BankAccount bankAccount3;
+        BankAccount bankAccount4;
         birth = new Date(YEAR_OF_EIGHTEEN_SEVENTY_NINE, MONTH_OF_MARCH, FOURTEENTH_DAY);
         death = new Date(YEAR_OF_NINETEEN_FIFTY_FIVE, MONTH_OF_APRIL, EIGHTEENTH_DAY);
         signup = new Date(YEAR_OF_NINETEEN_HUNDRED, MONTH_OF_JANUARY, FIRST_DAY);
@@ -52,10 +56,11 @@ public class Main {
         name = new Name("Albert", "Einstein");
         clientId = "abc123";
 
-        client1 = new BankClient(name , birth, death, signup, clientId);
+        client1 = new BankClient(name, birth, death, signup, clientId);
+        System.out.println(client1.getDetails());
+        bankAccount1 = new BankAccount(client1, 1000, 3141, "123456", signup, accountClosed);
+        System.out.println(bankAccount1.getDetails());
 
-
-        System.out.println(client1.getClientDetails());
 
         birth = new Date(YEAR_OF_NINETEEN_EIGHTEEN, MONTH_OF_JULY, EIGHTEENTH_DAY);
         death = new Date(YEAR_OF_TWO_THOUSAND_THIRTEEN, MONTH_OF_DECEMBER, FIFTH_DAY);
@@ -64,7 +69,9 @@ public class Main {
         clientId = "654321";
 
         client2 = new BankClient(name, birth, death, signup, clientId);
-        System.out.println(client2.getClientDetails());
+        System.out.println(client2.getDetails());
+        bankAccount2 = new BankAccount(client2, 2000, 4664, "8564936", signup);
+        System.out.println(bankAccount2.getDetails());
 
         birth = new Date(YEAR_OF_NINETEEN_O_SEVEN, MONTH_OF_JULY, SIXTH_DAY);
         death = new Date(YEAR_OF_NINETEEN_FIFTY_FOUR, MONTH_OF_JULY, THIRTEENTH_DAY);
@@ -74,6 +81,18 @@ public class Main {
         clientId = "frd123";
 
         client3 = new BankClient(name, birth, death, signup, clientId);
-        System.out.println(client3.getClientDetails());
+        System.out.println(client3.getDetails());
+        bankAccount3 = new BankAccount(client3, 500, 1907, "947392", signup, accountClosed);
+        System.out.println(bankAccount3.getDetails());
+
+        birth = new Date(YEAR_OF_NINETEEN_FIFTY_FOUR, MONTH_OF_APRIL, SEVENTH_DAY);
+        signup = new Date(YEAR_OF_NINETEEN_EIGHTY, MONTH_OF_OCTOBER, FIRST_DAY);
+        name = new Name("Jacky", "Chan");
+        clientId = "chan789";
+
+        client4 = new BankClient(name, birth, signup, clientId);
+        System.out.println(client4.getDetails());
+        bankAccount4 = new BankAccount(client4, 3000, 1954, "8503759", signup);
+        System.out.println(bankAccount4.getDetails());
     }
 }

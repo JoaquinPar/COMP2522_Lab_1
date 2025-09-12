@@ -37,19 +37,19 @@ public class BankClient {
 
         stringToReturn += getClientDetails();
 
-        if (!isAlive()) {
+        if (isAlive()) {
             stringToReturn = stringToReturn + clientName.getFullName() + " client #"
                     + clientID + " (Alive) joined the bank on " + signupDate.toString();
         } else {
             stringToReturn = stringToReturn + clientName.getFullName() + " client #"
-                    + clientID + " (Deceased) joined the bank on " + signupDate.toString() + ".";
+                    + clientID + " (Deceased) joined the bank on " + signupDate.toString();
         }
 
         return stringToReturn;
     }
 
     public boolean isAlive() {
-        return deathDate != null;
+        return deathDate == null;
     }
 
     public Name getClientName() {

@@ -90,12 +90,11 @@ public class BankAccount {
      */
     public String getDetails() {
         if (checkIfAccountOpened()) {
-            return client.getClientName().getFullName() + "had " + "$" + this.balanceUsd + " in account #: " + this.accountNumber
-                    + " Which they opened on " + this.dateAccountOpened.getDayOfWeek() + " " + this.dateAccountOpened;
+            return client.getClientName().getFullName() + " had " + "$" + this.balanceUsd + " in account #" + this.accountNumber
+                    + " Which they opened on " + this.dateAccountOpened + "\n";
         } else {
-            return client.getClientName().getFullName() + "had " + "$" + this.balanceUsd + " in account #: " + this.accountNumber
-                    + " Which they opened on " + this.dateAccountOpened + " "  + this.dateAccountOpened
-                    + " and closed on " + this.dateAccountClosed.getDayOfWeek() + " " + this.dateAccountClosed;
+            return client.getClientName().getFullName() + " had " + "$" + this.balanceUsd + " in account #" + this.accountNumber
+                    + " Which they opened on " + this.dateAccountOpened + " and closed on" + this.dateAccountClosed + "\n";
         }
     }
 }
