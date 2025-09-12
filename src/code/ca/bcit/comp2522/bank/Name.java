@@ -1,7 +1,10 @@
 package ca.bcit.comp2522.bank;
 
+
 /**
  *
+ * @author Mitchell Schaeffer, Joaquin Paredes
+ * @version 1.0
  */
 public class Name {
     private static final int INDEX_OFFSET = 1;
@@ -53,7 +56,8 @@ public class Name {
      * @return returns the initials of first and last name
      */
     public String getInitials() {
-        return firstName.toUpperCase().charAt(FIRST_CHARACTER_INDEX) + "." + lastName.toUpperCase().charAt(0) + ".";
+        return firstName.toUpperCase().charAt(FIRST_CHARACTER_INDEX) + "." +
+                lastName.toUpperCase().charAt(0) + ".";
     }
 
     /**
@@ -62,8 +66,10 @@ public class Name {
      * @return returns both the first and last names together
      */
     public String getFullName() {
-        return firstName.toUpperCase().charAt(FIRST_CHARACTER_INDEX) + firstName.substring(SECOND_CHARACTER_INDEX).toLowerCase() +
-                " " + lastName.toUpperCase().charAt(FIRST_CHARACTER_INDEX) + lastName.substring(SECOND_CHARACTER_INDEX).toLowerCase();
+        return firstName.toUpperCase().charAt(FIRST_CHARACTER_INDEX) +
+                firstName.substring(SECOND_CHARACTER_INDEX).toLowerCase() +
+                " " + lastName.toUpperCase().charAt(FIRST_CHARACTER_INDEX) +
+                lastName.substring(SECOND_CHARACTER_INDEX).toLowerCase();
     }
 
     /**

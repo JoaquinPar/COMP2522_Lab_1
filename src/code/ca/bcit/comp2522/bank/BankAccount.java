@@ -1,6 +1,9 @@
 package ca.bcit.comp2522.bank;
 
 public class BankAccount {
+
+    private static final int MIN_ACCOUNT_NUMBER_LENGTH = 6;
+    private static final int MAX_ACCOUNT_NUMBER_LENGTH = 7;
     //The mythical bank account class I will be working on
     private final BankClient client;
     private double balanceUsd;
@@ -15,13 +18,7 @@ public class BankAccount {
                        int              pin,
                        final String     accountNumber,
                        final Date       dateAccountOpened) {
-        this.client = client;
-        this.balanceUsd = balanceUsd;
-        this.pin = pin;
-        Validation.validateAccountNumber(accountNumber);
-        this.accountNumber = accountNumber;
-        this.dateAccountOpened = dateAccountOpened;
-        this.dateAccountClosed = null;
+        this(client, balanceUsd, pin, accountNumber, dateAccountOpened, null);
     }
 
     public BankAccount(final BankClient client,
@@ -30,10 +27,10 @@ public class BankAccount {
                        final String     accountNumber,
                        final Date       dateAccountOpened,
                        final Date       dateAccountClosed) {
+        Validation.validateString(accountNumber, MIN_ACCOUNT_NUMBER_LENGTH, MAX_ACCOUNT_NUMBER_LENGTH);
         this.client = client;
         this.balanceUsd = balanceUsd;
         this.pin = pin;
-        Validation.validateAccountNumber(accountNumber);
         this.accountNumber = accountNumber;
         this.dateAccountOpened = dateAccountOpened;
         this.dateAccountClosed = dateAccountClosed;

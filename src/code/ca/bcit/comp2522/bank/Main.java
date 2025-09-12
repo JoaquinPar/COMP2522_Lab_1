@@ -70,7 +70,7 @@ public class Main {
 
         client2 = new BankClient(name, birth, death, signup, clientId);
         System.out.println(client2.getDetails());
-        bankAccount2 = new BankAccount(client2, 2000, 4664, "8564936", signup);
+        bankAccount2 = new BankAccount(client2, 2000, 4664, "856492", signup);
         System.out.println(bankAccount2.getDetails());
 
         birth = new Date(YEAR_OF_NINETEEN_O_SEVEN, MONTH_OF_JULY, SIXTH_DAY);
