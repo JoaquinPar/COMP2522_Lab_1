@@ -41,7 +41,6 @@ public class BankClient {
     /**
      * Main constructor to construct a BankClient object with a Name object,
      * Date objects for birth, death and signup date, and a String for the client ID.
-     * It will validate the client ID,and if failed, it will not compile.
      *
      * @param clientName Name object to hold name of client
      * @param birthDate Date object for the birth of client

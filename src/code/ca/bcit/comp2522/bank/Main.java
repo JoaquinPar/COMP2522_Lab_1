@@ -15,6 +15,7 @@ public class Main {
     private static final int YEAR_OF_NINETEEN_FIFTY = 1950;
     private static final int MONTH_OF_OCTOBER = 10;
 
+    //Constants for Nelson Mandela except the dates repeated
     private static final int YEAR_OF_NINETEEN_EIGHTEEN = 1918;
     private static final int MONTH_OF_JULY = 7;
     private static final int YEAR_OF_TWO_THOUSAND_THIRTEEN = 2013;
@@ -24,18 +25,20 @@ public class Main {
     private static final int TENTH_DAY = 10;
     private static final int MONTH_OF_MAY = 5;
 
+    //Constants for Frida Kahlo, except those repeated
     private static final int YEAR_OF_NINETEEN_O_SEVEN = 1907;
     private static final int SIXTH_DAY = 6;
     private static final int YEAR_OF_NINETEEN_FIFTY_FOUR = 1954;
     private static final int THIRTEENTH_DAY = 13;
     private static final int YEAR_OF_NINETEEN_FORTY = 1940;
 
+    //Constants for Jacky Chan, except those repeated
     private static final int SEVENTH_DAY = 7;
     private static final int YEAR_OF_NINETEEN_EIGHTY = 1980;
 
+    //Constants for instantiating the different BankAccounts
     private static final int BALANCE_OF_ONE_THOUSAND = 1000;
     private static final int PIN_OF_THREE_ONE_FOUR_ONE = 3141;
-
     private static final int BALANCE_OF_TWO_THOUSAND = 2000;
     private static final int PIN_OF_FOUR_SIX_SIX_FOUR = 4664;
     private static final int BALANCE_OF_FIVE_HUNDRED = 500;
@@ -47,18 +50,17 @@ public class Main {
         Date birth;
         Date death;
         Name name;
-        final BankAccount bankAccount;
         Date signup;
         Date accountClosed;
         String clientId;
-        BankClient client1;
-        BankClient client2;
-        BankClient client3;
-        BankClient client4;
-        BankAccount bankAccount1;
-        BankAccount bankAccount2;
-        BankAccount bankAccount3;
-        BankAccount bankAccount4;
+        final BankClient client1;
+        final BankClient client2;
+        final BankClient client3;
+        final BankClient client4;
+        final BankAccount bankAccount1;
+        final BankAccount bankAccount2;
+        final BankAccount bankAccount3;
+        final BankAccount bankAccount4;
         birth = new Date(YEAR_OF_EIGHTEEN_SEVENTY_NINE, MONTH_OF_MARCH, FOURTEENTH_DAY);
         death = new Date(YEAR_OF_NINETEEN_FIFTY_FIVE, MONTH_OF_APRIL, EIGHTEENTH_DAY);
         signup = new Date(YEAR_OF_NINETEEN_HUNDRED, MONTH_OF_JANUARY, FIRST_DAY);
@@ -71,7 +73,6 @@ public class Main {
         bankAccount1 = new BankAccount(client1, BALANCE_OF_ONE_THOUSAND, PIN_OF_THREE_ONE_FOUR_ONE,
                 "123456", signup, accountClosed);
         System.out.println(bankAccount1.getDetails());
-
 
         birth = new Date(YEAR_OF_NINETEEN_EIGHTEEN, MONTH_OF_JULY, EIGHTEENTH_DAY);
         death = new Date(YEAR_OF_TWO_THOUSAND_THIRTEEN, MONTH_OF_DECEMBER, FIFTH_DAY);
