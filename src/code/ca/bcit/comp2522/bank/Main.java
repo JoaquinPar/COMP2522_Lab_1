@@ -30,6 +30,9 @@ public class Main {
     private static final int THIRTEENTH_DAY = 13;
     private static final int YEAR_OF_NINETEEN_FORTY = 1940;
 
+    private static final int SEVENTH_DAY = 7;
+    private static final int YEAR_OF_NINETEEN_EIGHTY = 1980;
+
     public static void main(final String[] args) {
         Date birth;
         Date death;
@@ -41,6 +44,7 @@ public class Main {
         BankClient client1;
         BankClient client2;
         BankClient client3;
+        BankClient client4;
         birth = new Date(YEAR_OF_EIGHTEEN_SEVENTY_NINE, MONTH_OF_MARCH, FOURTEENTH_DAY);
         death = new Date(YEAR_OF_NINETEEN_FIFTY_FIVE, MONTH_OF_APRIL, EIGHTEENTH_DAY);
         signup = new Date(YEAR_OF_NINETEEN_HUNDRED, MONTH_OF_JANUARY, FIRST_DAY);
@@ -48,7 +52,7 @@ public class Main {
         name = new Name("Albert", "Einstein");
         clientId = "abc123";
 
-        client1 = new BankClient(name , birth, death, signup, accountClosed, clientId);
+        client1 = new BankClient(name , birth, death, signup, clientId);
         System.out.println(client1.getClientDetails());
 
         birth = new Date(YEAR_OF_NINETEEN_EIGHTEEN, MONTH_OF_JULY, EIGHTEENTH_DAY);
@@ -69,5 +73,14 @@ public class Main {
 
         client3 = new BankClient(name, birth, death, signup, clientId);
         System.out.println(client3.getClientDetails());
+
+        birth = new Date(YEAR_OF_NINETEEN_FIFTY_FOUR, MONTH_OF_APRIL, SEVENTH_DAY);
+        signup = new Date(YEAR_OF_NINETEEN_EIGHTY, MONTH_OF_OCTOBER, FIRST_DAY);
+        name = new Name("Jacky", "Chan");
+        clientId = "chan789";
+
+        client4 = new BankClient(name, birth, signup, clientId);
+        System.out.println(client4.getClientDetails());
+
     }
 }

@@ -21,7 +21,8 @@ public class Name {
      * @param firstName the first name entered by the user
      * @param lastName the last name entered by the user
      */
-    public Name(String firstName, String lastName) {
+    public Name(final String firstName,
+                final String lastName) {
         Validation.validateString(firstName, MIN_LENGTH_OF_NAMES, MAX_LENGTH_OF_NAMES);
         Validation.validateString(lastName, MIN_LENGTH_OF_NAMES, MAX_LENGTH_OF_NAMES);
         this.firstName = firstName;

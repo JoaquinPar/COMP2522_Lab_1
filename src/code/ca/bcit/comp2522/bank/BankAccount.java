@@ -11,8 +11,12 @@ public class BankAccount {
     private final int pin;
     private final String accountNumber;
 
-    public BankAccount(final BankClient client, final double balanceUsd, int pin,
-                       final String accountNumber, final Name clientName, final Date dateAccountOpened) {
+    public BankAccount(final BankClient client,
+                       final double     balanceUsd,
+                       int              pin,
+                       final String     accountNumber,
+                       final Name       clientName,
+                       final Date       dateAccountOpened) {
         this.client = client;
         this.balanceUsd = balanceUsd;
         this.name = clientName;
@@ -23,8 +27,13 @@ public class BankAccount {
         this.dateAccountClosed = null;
     }
 
-    public BankAccount(final BankClient client, final double balanceUsd, int pin,
-                       final String accountNumber, final Name clientName, final Date dateAccountOpened, final Date dateAccountClosed) {
+    public BankAccount(final BankClient client,
+                       final double     balanceUsd,
+                       int              pin,
+                       final String     accountNumber,
+                       final Name       clientName,
+                       final Date       dateAccountOpened,
+                       final Date       dateAccountClosed) {
         this.client = client;
         this.balanceUsd = balanceUsd;
         this.name = clientName;
@@ -34,7 +43,6 @@ public class BankAccount {
         this.dateAccountOpened = dateAccountOpened;
         this.dateAccountClosed = dateAccountClosed;
     }
-
 
     /**
      * Amount user wants to deposit into account.
