@@ -1,10 +1,19 @@
 package ca.bcit.comp2522.bank;
 
+/**
+ * Bank account class takes in information
+ * about user to create an account
+ * such as balance client
+ * date
+ * and pin
+ * @author Mitchell Schaeffer, Joaquin Parades
+ * @version 1.0
+ *
+ */
 public class BankAccount {
 
     private static final int MIN_ACCOUNT_NUMBER_LENGTH = 6;
     private static final int MAX_ACCOUNT_NUMBER_LENGTH = 7;
-    //The mythical bank account class I will be working on
     private final BankClient client;
     private double balanceUsd;
     private final Date dateAccountOpened;
@@ -78,7 +87,7 @@ public class BankAccount {
      * @param amountToWithdrawUsd Amount wanting to withdraw in USD
      * @param pinToMatch The users pin
      */
-    public void withdrawFromAccountWithPin(final double amountToWithdrawUsd, int pinToMatch) {
+    public void withdrawFromAccount(final double amountToWithdrawUsd, int pinToMatch) {
         if (balanceUsd < amountToWithdrawUsd) {
             throw new IllegalArgumentException("Not sufficient funds");
         }
