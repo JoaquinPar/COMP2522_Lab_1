@@ -3,9 +3,7 @@ package ca.bcit.comp2522.bank;
 /**
  * Bank account class takes in information
  * about user to create an account
- * such as balance client
- * date
- * and pin
+ * such as balance client date and pin
  * @author Mitchell Schaeffer, Joaquin Parades
  * @version 1.0
  *
@@ -92,7 +90,7 @@ public class BankAccount {
             throw new IllegalArgumentException("Not sufficient funds");
         }
         if (pinToMatch != pin) {
-            System.out.println("yo this guys pin is wrong he stealing");
+            throw new IllegalArgumentException("Incorrect pin");
         }
         if (pinToMatch == pin) {
             balanceUsd -= amountToWithdrawUsd;
