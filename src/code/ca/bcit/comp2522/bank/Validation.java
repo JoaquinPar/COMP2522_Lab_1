@@ -1,5 +1,13 @@
 package ca.bcit.comp2522.bank;
 
+/**
+ * Validation class is a helper class containing various validation
+ * methods, to ensure that the data provided will not pose any harm
+ * to either the program or the system running it.
+ *
+ * @author Mitchell Schaeffer, Joaquin Paredes
+ * @version 1.0
+ */
 public class Validation {
 
     /**

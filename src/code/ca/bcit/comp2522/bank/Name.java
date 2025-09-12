@@ -2,6 +2,9 @@ package ca.bcit.comp2522.bank;
 
 
 /**
+ * This class represents a {@code Name} for a client with a first and
+ * last name. This class also provides methods so that the information
+ * of it can be acquired outside itself.
  *
  * @author Mitchell Schaeffer, Joaquin Paredes
  * @version 1.0
@@ -17,9 +20,9 @@ public class Name {
     private final String lastName;
 
     /**
-     * Need to make this validate if the names are longer than 45 characters,
-     * it must also not contain admin in any letter casing, cannot be null
-     * nor blank.
+     * Constructs a Name object only if the provided names are valid.
+     * Once validated, it will assign the values to the respective
+     * first and last name variables.
      *
      * @param firstName the first name entered by the user
      * @param lastName the last name entered by the user

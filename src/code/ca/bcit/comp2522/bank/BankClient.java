@@ -1,7 +1,14 @@
 package ca.bcit.comp2522.bank;
 
 /**
+ * This class represents a {@code BankClient}. It provides
+ * an object name, birth and death date, signup date, and a
+ * unique ID. It also contains methods to make sure that the
+ * information is provided where needed, and also to make sure
+ * that the information is correct, such as the method {@code isAlive()}.
  *
+ * @author Mitchell Schaeffer, Joaquin Paredes
+ * @version 1.0
  */
 public class BankClient {
 
@@ -15,6 +22,9 @@ public class BankClient {
     private final String clientID;
 
     /**
+     * Overloaded constructor in case the client does not have a death date.
+     * When called, it will call the main constructor, passing the values
+     * received to it.
      *
      * @param clientName Name object to hold name of client
      * @param birthDate Date object for the birth of client
@@ -29,6 +39,9 @@ public class BankClient {
     }
 
     /**
+     * Main constructor to construct a BankClient object with a Name object,
+     * Date objects for birth, death and signup date, and a String for the client ID.
+     * It will validate the client ID,and if failed, it will not compile.
      *
      * @param clientName Name object to hold name of client
      * @param birthDate Date object for the birth of client
